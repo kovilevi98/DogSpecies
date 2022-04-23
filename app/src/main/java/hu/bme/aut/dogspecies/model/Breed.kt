@@ -1,5 +1,8 @@
 package hu.bme.aut.dogspecies.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+
 /**
  *
  * @param breedFor
@@ -14,18 +17,19 @@ package hu.bme.aut.dogspecies.model
  * @param temperament
  * @param weight
  */
+@Entity(tableName = "breed")
 data class Breed (
-    val breedFor: kotlin.String? = null,
-    val breedGroup: kotlin.String? = null,
-    val height: Height? = null,
-    val id: kotlin.Int? = null,
-    val image: Image? = null,
-    val lifeSpan: kotlin.String? = null,
-    val name: kotlin.String? = null,
-    val origin: kotlin.String? = null,
-    val referenceImageId: kotlin.String? = null,
-    val temperament: kotlin.String? = null,
-    val weight: Weight? = null
+    @ColumnInfo(name = "breedFor") val breedFor: kotlin.String? = null,
+    @ColumnInfo(name = "breedGroup") val breedGroup: kotlin.String? = null,
+    @ColumnInfo(name = "height") val height: Height? = null,
+    @ColumnInfo(name = "id") val id: kotlin.Int? = null,
+    @ColumnInfo(name = "image") val image: Image? = null,
+    @ColumnInfo(name = "lifeSpan") val lifeSpan: kotlin.String? = null,
+    @ColumnInfo(name = "name") val name: kotlin.String? = null,
+    @ColumnInfo(name = "origin") val origin: kotlin.String? = null,
+    @ColumnInfo(name = "referenceImageId") val referenceImageId: kotlin.String? = null,
+    @ColumnInfo(name = "temperament") val temperament: kotlin.String? = null,
+    @ColumnInfo(name = "weight") val weight: Weight? = null
 ) {
 
 }
