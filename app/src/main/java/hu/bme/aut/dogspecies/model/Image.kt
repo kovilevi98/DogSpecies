@@ -1,5 +1,7 @@
 package hu.bme.aut.dogspecies.model
 
+import androidx.room.Entity
+
 /**
  *
  * @param height
@@ -7,6 +9,7 @@ package hu.bme.aut.dogspecies.model
  * @param url
  * @param width
  */
+@Entity
 data class Image (
     val height: kotlin.Int? = null,
     val id: kotlin.String? = null,
