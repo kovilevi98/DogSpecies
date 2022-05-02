@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
                 if (viewModel.loading.value) {
                     Loading()
                 } else {
-                    DogList(viewModel.breedList)
+                    DogList(viewModel.actualList)
                 }
             }
         }
@@ -292,12 +292,22 @@ class MainActivity : ComponentActivity() {
                                 //navController.popBackStack()
                             }
                         ) {
-                            Icon(
-                                Icons.Outlined.Star,
-                                "Info",
-                                tint = Color.Black,
-                                modifier = Modifier
-                            )
+                            if(viewModel.favoriteList.contains(breed)){
+                                Icon(
+                                    Icons.Outlined.Star,
+                                    "Info",
+                                    tint = Color.Yellow,
+                                    modifier = Modifier
+                                )
+                            } else {
+                                Icon(
+                                    Icons.Outlined.Star,
+                                    "Info",
+                                    tint = Color.Black,
+                                    modifier = Modifier
+                                )
+                            }
+
                         }
                     }
                     // Add a vertical space between the author and message texts
@@ -384,12 +394,31 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             Spacer(modifier = Modifier.size(Dp(value = 10F)))
-                            Icon(
-                                Icons.Filled.Star,
-                                contentDescription = "Favorite",
-                                tint = Color.White,
-                                modifier = Modifier.size(ButtonDefaults.IconSize)
-                            )
+                            IconButton(
+                                modifier = Modifier.then(Modifier.size(24.dp)),
+                                onClick = {
+                                    viewModel.favorite.value = !viewModel.favorite.value
+                                    if(viewModel.favorite.value) {
+                                        viewModel.selectFavorites()
+                                    }
+                                    else {
+                                        viewModel.selectAll()
+                                    }
+                                }) {
+                                if(viewModel.favorite.value){
+                                    Icon(
+                                        Icons.Filled.Star,
+                                        "refresh",
+                                        tint = Color.Yellow,
+                                        modifier = Modifier
+                                    )
+                                } else Icon(
+                                    Icons.Filled.Star,
+                                    "refresh",
+                                    tint = Color.White,
+                                    modifier = Modifier
+                                )
+                            }
                             Spacer(modifier = Modifier.size(Dp(value = 10F)))
                             IconButton(
                                 modifier = Modifier.then(Modifier.size(24.dp)),

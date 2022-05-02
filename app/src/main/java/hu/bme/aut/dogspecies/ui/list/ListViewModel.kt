@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hu.bme.aut.dogspecies.model.Breed
 import hu.bme.aut.dogspecies.repository.BreedRepository
+import hu.bme.aut.dogspecies.repository.FavoriteRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,23 +18,30 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    var breedRepository: BreedRepository
+    var breedRepository: BreedRepository,
+    var favoriteRepository: FavoriteRepository
 ) : ViewModel() {
 
 
     val breedList = mutableStateListOf<Breed>()
-    val favoriteList = mutableStateListOf<Pair<Int, Boolean>>()
+    val favoriteList = mutableStateListOf<Breed>()
+    var actualList = mutableStateListOf<Breed>()
 
     var loading = mutableStateOf(false)
+    var favorite = mutableStateOf(false)
 
     init {
         loading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             val list = loadList()
             breedList.addAll(list)
-            breedList.forEach {
-                favoriteList.add(Pair(it.id, false))
-            }
+
+            //favoriteRepository.insertFavorite(list.first())
+
+            val favorites = loadFavorites()
+            favoriteList.addAll(favorites)
+
+            actualList.addAll(breedList)
             loading.value = false;
         }
 
@@ -44,6 +52,10 @@ class ListViewModel @Inject constructor(
         return  breedRepository.getBreeds()
     }
 
+    suspend fun loadFavorites(): List<Breed> {
+        return  favoriteRepository.getFavorites()
+    }
+
     fun refresh() {
         loading.value = true
         CoroutineScope(Dispatchers.IO).launch {
@@ -51,6 +63,16 @@ class ListViewModel @Inject constructor(
             breedList.addAll(list)
             loading.value = false
         }
+    }
+
+    fun selectFavorites(){
+        actualList.clear()
+        actualList.addAll(favoriteList)
+    }
+
+    fun selectAll(){
+        actualList.clear()
+        actualList.addAll(breedList)
     }
 
 }
