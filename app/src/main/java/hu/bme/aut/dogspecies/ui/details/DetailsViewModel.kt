@@ -1,4 +1,16 @@
 package hu.bme.aut.dogspecies.ui.details
 
-class DetailsViewModel {
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class DetailsViewModel @Inject constructor(
+
+) : ViewModel() {
+
+    fun loadDetails() {
+
+    }
+
 }
