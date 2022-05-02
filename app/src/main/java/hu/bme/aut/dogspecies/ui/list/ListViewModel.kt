@@ -22,6 +22,8 @@ class ListViewModel @Inject constructor(
 
 
     val breedList = mutableStateListOf<Breed>()
+    val favoriteList = mutableStateListOf<Pair<Int, Boolean>>()
+
     var loading = mutableStateOf(false)
 
     init {
@@ -29,6 +31,9 @@ class ListViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val list = loadList()
             breedList.addAll(list)
+            breedList.forEach {
+                favoriteList.add(Pair(it.id, false))
+            }
             loading.value = false;
         }
 
