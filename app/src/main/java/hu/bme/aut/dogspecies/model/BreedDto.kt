@@ -4,19 +4,19 @@ import com.squareup.moshi.Json
 
 class BreedDto (
     @Json(name = "bred_for")
-    val bredFor: kotlin.String,
+    val bredFor: kotlin.String?,
     @Json(name = "breed_group")
-    val breedGroup: kotlin.String,
+    val breedGroup: kotlin.String?,
     val height: Height,
     val id: kotlin.Int,
     val image: Image,
     @Json(name = "life_span")
     val lifeSpan: kotlin.String,
     val name: kotlin.String,
-    val origin: kotlin.String,
+    val origin: kotlin.String?,
     @Json(name = "reference_image_id")
     val referenceImageId: kotlin.String,
-    val temperament: kotlin.String,
+    val temperament: kotlin.String?,
     val weight: Weight
 )
 
