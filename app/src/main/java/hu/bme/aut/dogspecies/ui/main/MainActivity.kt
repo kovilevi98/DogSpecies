@@ -1,40 +1,53 @@
 package hu.bme.aut.dogspecies.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import hu.bme.aut.dogspecies.R
-import hu.bme.aut.dogspecies.di.NetworkModule
-import hu.bme.aut.dogspecies.ui.about.AboutActivity
-import hu.bme.aut.dogspecies.ui.details.DetailsActivity
-import retrofit2.Retrofit
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import hu.bme.aut.dogspecies.ui.about.AboutScreen
+import hu.bme.aut.dogspecies.ui.add.AddScreen
+import hu.bme.aut.dogspecies.ui.add.AddViewModel
+import hu.bme.aut.dogspecies.ui.list.ListScreen
+import hu.bme.aut.dogspecies.ui.list.ListViewModel
 
-import javax.inject.Inject
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    private val viewModel: ListViewModel by viewModels()
+    private lateinit var navController: NavHostController
 
+    private val addViewModel: AddViewModel by viewModels()
 
-
-
-class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var networkModule: NetworkModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val detailsButton = findViewById<Button>(R.id.details)
-
-        detailsButton.setOnClickListener {
-            val intent = Intent(this, DetailsActivity::class.java)
-            startActivity(intent)
+        setContent {
+            Navigation()
         }
+    }
 
-        val aboutButton = findViewById<Button>(R.id.about)
-
-        aboutButton.setOnClickListener {
-            val intent = Intent(this, AboutActivity::class.java)
-            startActivity(intent)
+    @Composable
+    fun Navigation() {
+        navController = rememberNavController()
+        NavHost(navController, startDestination = "list") {
+            composable(route = "list") {
+                ListScreen(navController = navController, viewModel = viewModel, addViewModel = addViewModel).Screen()
+            }
+            composable(route = "About") {
+                AboutScreen(navController = navController).Screen()
+            }
+            composable(route = "Plus") {
+                AddScreen(
+                    navController = navController,
+                    addViewModel = addViewModel,
+                ).Screen()
+            }
         }
     }
 

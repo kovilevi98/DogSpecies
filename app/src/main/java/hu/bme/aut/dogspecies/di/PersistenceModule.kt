@@ -9,6 +9,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import hu.bme.aut.dogspecies.datasource.database.BreedsDao
 import hu.bme.aut.dogspecies.datasource.database.BreedsDatabase
+import hu.bme.aut.dogspecies.datasource.database.FavoriteDao
+import hu.bme.aut.dogspecies.datasource.database.FavoriteDatabase
 import javax.inject.Singleton
 
 @Module
@@ -27,6 +29,20 @@ object PersistenceModule {
     @Singleton
     fun provideBreedDao(breedsDatabase: BreedsDatabase): BreedsDao {
         return breedsDatabase.breedsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDatabase(@ApplicationContext context: Context): FavoriteDatabase = Room.databaseBuilder(
+        context,
+        FavoriteDatabase::class.java,
+        "favorites"
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDao(favoriteDatabase: FavoriteDatabase): FavoriteDao {
+        return favoriteDatabase.favoriteDao()
     }
 
 }

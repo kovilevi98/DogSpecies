@@ -15,4 +15,6 @@ class BreedLocalDataSource  @Inject constructor(
     fun getBreedById(id: Int) = breedDao.getBreed(id).toBreed()
 
     fun insertBreed(breed: Breed) = breedDao.insertBreed(breed.toBreedEntity())
+
+    fun insertFavoriteBreed(breed: Breed) = breedDao.insertBreed(breed.toBreedEntity())
 }
