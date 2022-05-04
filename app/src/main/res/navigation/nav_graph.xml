@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/list"
-        android:name="hu.bme.aut.dogspecies.ui.list.ListFragment"
+        android:name="hu.bme.aut.dogspecies.ui.list.ListScreen"
         android:label="*Lista"
         tools:layout="@layout/fragment_list">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/details"
-        android:name="hu.bme.aut.dogspecies.ui.list.ListFragment"
+        android:name="hu.bme.aut.dogspecies.ui.list.ListScreen"
         android:label="*Detail'"
         tools:layout="@layout/fragment_detail" />
 </navigation>

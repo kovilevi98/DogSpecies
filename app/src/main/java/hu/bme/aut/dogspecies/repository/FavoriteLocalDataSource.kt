@@ -13,9 +13,8 @@ class FavoriteLocalDataSource  @Inject constructor(
 
     fun getBreeds() = favoriteDao.getFavorites().map { it.toBreed() }
 
-    fun getBreedById(id: Int) = favoriteDao.getFavorite(id).toBreed()
+    fun deleteBreed(breed: Breed) = favoriteDao.deleteFavorite((breed.toFavoriteEntity()))
 
     fun insertBreed(breed: Breed) = favoriteDao.insertFavorite(breed.toFavoriteEntity())
 
-    fun insertFavoriteBreed(breed: Breed) = favoriteDao.insertFavorite(breed.toFavoriteEntity())
 }

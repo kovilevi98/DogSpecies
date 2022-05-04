@@ -1,15 +1,10 @@
-package hu.bme.aut.dogspecies.ui.details
+package hu.bme.aut.dogspecies.ui.add
 
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hu.bme.aut.dogspecies.model.Breed
-import hu.bme.aut.dogspecies.repository.BreedRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

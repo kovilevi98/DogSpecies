@@ -7,8 +7,6 @@ A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 p
 @app/src/test/java/hu/bme/aut/dogspecies/FakePersistenceModule.kt,b\a\bab06a627bef60342d7d282751d3da570cf8de7a
-q
-Aapp/src/main/java/hu/bme/aut/dogspecies/ui/about/AboutActivity.kt,5\a\5a2834f14c225b1f76f66f3a3c7c0705d4797e8b
 u
 Eapp/src/main/java/hu/bme/aut/dogspecies/ui/details/DetailsFragment.kt,e\3\e34bd490f1b4a7de80da7e67f93d94fd44934237
 <
@@ -27,8 +25,6 @@ k
 ;app/src/test/java/hu/bme/aut/dogspecies/DatabaseUnitTest.kt,d\c\dc557ecdb7fc97dc53e5a3db152deaaffd6d45ff
 e
 5app/src/main/java/hu/bme/aut/dogspecies/DogSpecies.kt,5\e\5e1a24a5613e47bfe60eb5a1ffe5a42a9b927f06
-o
-?app/src/main/java/hu/bme/aut/dogspecies/ui/list/ListFragment.kt,a\4\a43228de9e71cfc7d306500a6fe6a5371ce097f5
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 g
@@ -55,7 +51,3 @@ z
 Japp/src/main/java/hu/bme/aut/dogspecies/datasource/database/FavoriteDao.kt,0\8\08ff0c7c893a2507a640f64eaf5fd503a5df25d9
 f
 6app/src/main/java/hu/bme/aut/dogspecies/model/Breed.kt,a\7\a73e90347da32d61b68f9320b99fc66dfa591559
-z
-Japp/src/main/java/hu/bme/aut/dogspecies/repository/BreedLocalDataSource.kt,c\4\c4f3c8b80531f5ea7f4fb41010b3d60e93dec5ee
-}
-Mapp/src/main/java/hu/bme/aut/dogspecies/repository/FavoriteLocalDataSource.kt,6\a\6a26b8f080e96dc32815ec7d316eb78b26ea6bac

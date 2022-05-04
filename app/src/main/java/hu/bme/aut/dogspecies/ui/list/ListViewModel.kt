@@ -18,8 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    var breedRepository: BreedRepository,
-    var favoriteRepository: FavoriteRepository
+    private var breedRepository: BreedRepository,
+    private var favoriteRepository: FavoriteRepository
 ) : ViewModel() {
 
 
@@ -48,11 +48,11 @@ class ListViewModel @Inject constructor(
     }
 
 
-    suspend fun loadList(): List<Breed> {
+    private suspend fun loadList(): List<Breed> {
         return  breedRepository.getBreeds()
     }
 
-    suspend fun loadFavorites(): List<Breed> {
+    private fun loadFavorites(): List<Breed> {
         return  favoriteRepository.getFavorites()
     }
 
@@ -65,6 +65,16 @@ class ListViewModel @Inject constructor(
         }
     }
 
+    fun refreshFavoriteList() {
+        loading.value = true
+        CoroutineScope(Dispatchers.IO).launch {
+            val favorites = loadFavorites()
+            favoriteList.clear()
+            favoriteList.addAll(favorites)
+            loading.value = false
+        }
+    }
+
     fun selectFavorites(){
         actualList.clear()
         actualList.addAll(favoriteList)
@@ -73,6 +83,25 @@ class ListViewModel @Inject constructor(
     fun selectAll(){
         actualList.clear()
         actualList.addAll(breedList)
+    }
+
+    fun addToFavorites(breed: Breed){
+        loading.value = true
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteRepository.insertFavorite(breed)
+            favoriteList.add(breed)
+            loading.value = false;
+        }
+
+    }
+
+    fun removeFavorite(breed: Breed){
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteRepository.deleteFavorite(breed)
+            favoriteList.remove(breed)
+            loading.value = false;
+        }
+
     }
 
 }
