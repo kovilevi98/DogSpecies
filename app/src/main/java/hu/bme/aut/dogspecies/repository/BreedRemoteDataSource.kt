@@ -20,7 +20,7 @@ class BreedRemoteDataSource  @Inject constructor(
         breedApi.getBreeds().map { it.toBreed() }
     }
 
-    suspend fun getCharacter(id: Int) = safeApiCall {
+    suspend fun getBreed(id: Int) = safeApiCall {
         breedApi.getBreed(id).toBreed()
     }
 }
