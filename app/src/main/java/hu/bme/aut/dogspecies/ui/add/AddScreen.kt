@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 
 class AddScreen(
     private val navController: NavHostController,
-    private val detailsViewModel: DetailsViewModel,
+    private val addViewModel: AddViewModel,
 ) {
     @Composable
     fun Screen() {
@@ -66,7 +66,7 @@ class AddScreen(
             contract =
             ActivityResultContracts.GetContent()
         ) { uri: Uri? ->
-            detailsViewModel.imageUri.value = uri
+            addViewModel.imageUri.value = uri
         }
         Column(
             modifier = Modifier
@@ -75,7 +75,7 @@ class AddScreen(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            if (detailsViewModel.imageUri.value == null) {
+            if (addViewModel.imageUri.value == null) {
                 Row() {
                     Spacer(modifier = Modifier.width(12.dp))
                     Button(onClick = {
@@ -88,18 +88,18 @@ class AddScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            detailsViewModel.imageUri.value?.let {
+            addViewModel.imageUri.value?.let {
                 if (Build.VERSION.SDK_INT < 28) {
-                    detailsViewModel.bitmap.value = MediaStore.Images
+                    addViewModel.bitmap.value = MediaStore.Images
                         .Media.getBitmap(context.contentResolver, it)
 
                 } else {
                     val source = ImageDecoder
                         .createSource(context.contentResolver, it)
-                    detailsViewModel.bitmap.value = ImageDecoder.decodeBitmap(source)
+                    addViewModel.bitmap.value = ImageDecoder.decodeBitmap(source)
                 }
 
-                detailsViewModel.bitmap.value?.let { btm ->
+                addViewModel.bitmap.value?.let { btm ->
                     Image(
                         bitmap = btm.asImageBitmap(),
                         contentDescription = null,
@@ -111,19 +111,29 @@ class AddScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             TextField(
-                value = detailsViewModel.name.value,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent, //hide the indicator
+
+                ),
+                value = addViewModel.name.value,
                 onValueChange = {
-                    detailsViewModel.name.value = it
+                    addViewModel.name.value = it
                 },
-                label = { Text("Name") }
+                label = { Text("Name") },
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             TextField(
-                value = detailsViewModel.origin.value,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent, //hide the indicator
+
+                ),
+                value = addViewModel.origin.value,
                 onValueChange = {
-                    detailsViewModel.origin.value = it
+                    addViewModel.origin.value = it
                 },
                 label = { Text("Origin") }
             )
@@ -131,9 +141,15 @@ class AddScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             TextField(
-                value = detailsViewModel.breedFor.value,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent, //hide the indicator
+
+                ),
+
+                value = addViewModel.breedFor.value,
                 onValueChange = {
-                    detailsViewModel.breedFor.value = it
+                    addViewModel.breedFor.value = it
                 },
                 label = { Text("Breed For") }
             )
@@ -186,4 +202,5 @@ class AddScreen(
         }
 
     }
+
 }

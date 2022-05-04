@@ -1,6 +1,5 @@
 package hu.bme.aut.dogspecies.ui.list
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,7 +8,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,10 +22,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import hu.bme.aut.dogspecies.model.Breed
+import hu.bme.aut.dogspecies.ui.add.AddViewModel
 
 class ListScreen(
     private val navController: NavHostController,
-    private val viewModel: ListViewModel
+    private val viewModel: ListViewModel,
+    private val addViewModel: AddViewModel
 ) {
     @Composable
     fun Screen() {
@@ -138,6 +138,9 @@ class ListScreen(
                         IconButton(
                             modifier = Modifier.then(Modifier.size(24.dp)),
                             onClick = {
+                                addViewModel.name.value = breed.name.toString()
+                                addViewModel.breedFor.value = breed.breedFor.toString()
+                                addViewModel.origin.value = breed.origin.toString()
                                 navController.navigate("Plus")
                             }
                         ) {

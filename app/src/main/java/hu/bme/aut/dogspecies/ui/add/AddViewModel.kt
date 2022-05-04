@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(
+class AddViewModel @Inject constructor(
     //var breedRepository: BreedRepository
 ) : ViewModel() {
     var imageUri = mutableStateOf<Uri?>(null)

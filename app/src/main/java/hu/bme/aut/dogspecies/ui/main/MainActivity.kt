@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import hu.bme.aut.dogspecies.ui.about.AboutScreen
 import hu.bme.aut.dogspecies.ui.add.AddScreen
-import hu.bme.aut.dogspecies.ui.add.DetailsViewModel
+import hu.bme.aut.dogspecies.ui.add.AddViewModel
 import hu.bme.aut.dogspecies.ui.list.ListScreen
 import hu.bme.aut.dogspecies.ui.list.ListViewModel
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
     private val viewModel: ListViewModel by viewModels()
     private lateinit var navController: NavHostController
 
-    private val detailsViewModel: DetailsViewModel by viewModels()
+    private val addViewModel: AddViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         navController = rememberNavController()
         NavHost(navController, startDestination = "list") {
             composable(route = "list") {
-                ListScreen(navController = navController, viewModel = viewModel).Screen()
+                ListScreen(navController = navController, viewModel = viewModel, addViewModel = addViewModel).Screen()
             }
             composable(route = "About") {
                 AboutScreen(navController = navController).Screen()
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
             composable(route = "Plus") {
                 AddScreen(
                     navController = navController,
-                    detailsViewModel = detailsViewModel
+                    addViewModel = addViewModel,
                 ).Screen()
             }
         }
