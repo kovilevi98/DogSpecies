@@ -53,5 +53,5 @@ object NetworkModule {
     }
 
     @Provides
-    fun breedApi(retrofit: Retrofit): BreedApi = retrofit.create()
+    fun breakingBadApi(retrofit: Retrofit): BreedApi = retrofit.create()
 }

@@ -47,6 +47,37 @@ class DatabaseUnitTest {
         assertEquals(1, dao.getAllBreeds().size)
     }
 
+    @ExperimentalCoroutinesApi
+    @Test
+    fun deleteBreedTest() = runTest {
+        // Arrange
+        val dao = database.breedsDao()
+
+        // Act
+        val breed = BreedEntity(id = 1, name = "Affenpinscher")
+        dao.insertBreed(breed)
+        dao.deleteBreed(breed)
+
+        // Assert
+        assertEquals(0, dao.getAllBreeds().size)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun getBreedTest() = runTest {
+        // Arrange
+        val dao = database.breedsDao()
+
+        // Act
+        val breed = BreedEntity(id = 1, name = "Affenpinscher")
+        dao.insertBreed(breed)
+        val breed2 = dao.getBreed(breed.id)
+
+        // Assert
+        assertEquals(breed, breed2)
+    }
+
+
     @After
     fun close() {
         database.close()
