@@ -5,8 +5,6 @@ g
 7app/src/main/java/hu/bme/aut/dogspecies/model/Weight.kt,2\9\297022a5fcde5fbf6ce78b6492d9f56256f9ca83
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 {
 Kapp/src/main/java/hu/bme/aut/dogspecies/datasource/network/NetworkConfig.kt,e\1\e1bac2f5538b3a6b32d415e5b90b20970f2be8d9
 v
@@ -19,8 +17,6 @@ l
 <app/src/main/java/hu/bme/aut/dogspecies/model/BreedEntity.kt,0\b\0b995a8b857b10a8ab8e491e52e779ad968cadba
 o
 ?app/src/main/java/hu/bme/aut/dogspecies/model/FavoriteEntity.kt,1\b\1b97e2fff309f81d3f814925ca8940f1243cbd19
-m
-=app/src/main/java/hu/bme/aut/dogspecies/ui/list/ListScreen.kt,3\a\3a645506e1ad4fb10592c185d8ec5743d7d0e287
 n
 >app/src/main/java/hu/bme/aut/dogspecies/ui/add/AddViewModel.kt,f\9\f9dde2a99b13865dffa387dbea61fffa34342259
 k
@@ -37,3 +33,7 @@ Iapp/src/main/java/hu/bme/aut/dogspecies/datasource/database/Converters.kt,c\a\
 Oapp/src/main/java/hu/bme/aut/dogspecies/datasource/database/FavoriteDatabase.kt,0\a\0a06dc54723e9ba69dafe8d5a67a3c182d153c02
 z
 Japp/src/main/java/hu/bme/aut/dogspecies/repository/BreedLocalDataSource.kt,c\4\c4f3c8b80531f5ea7f4fb41010b3d60e93dec5ee
+x
+Happ/src/main/java/hu/bme/aut/dogspecies/repository/FavoriteRepository.kt,a\a\aad4ca42b9d7982daf45a85d558b2acb238770ec
+o
+?app/src/main/java/hu/bme/aut/dogspecies/di/PersistenceModule.kt,e\2\e291076fab18651314660c55efddc47f69fe40ce
