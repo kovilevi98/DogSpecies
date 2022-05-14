@@ -3,14 +3,17 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'jacoco'
 }
+
+apply from: "$project.rootDir/jacoco.gradle"
 
 android {
     compileSdk 31
 
     defaultConfig {
         applicationId "hu.bme.aut.dogspecies"
-        minSdk 21
+        minSdk 25
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -23,7 +26,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -46,6 +49,8 @@ android {
             includeAndroidResources = true
         }
     }
+
+
 }
 
 dependencies {
