@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import hu.bme.aut.dogspecies.ui.about.AboutScreen
 import hu.bme.aut.dogspecies.ui.add.AddScreen
@@ -16,8 +17,10 @@ import hu.bme.aut.dogspecies.ui.add.AddViewModel
 import hu.bme.aut.dogspecies.ui.list.ListScreen
 import hu.bme.aut.dogspecies.ui.list.ListViewModel
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private val viewModel: ListViewModel by viewModels()
     private lateinit var navController: NavHostController
 
@@ -26,6 +29,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         setContent {
             Navigation()
