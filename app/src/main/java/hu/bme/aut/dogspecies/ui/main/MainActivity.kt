@@ -1,31 +1,59 @@
 package hu.bme.aut.dogspecies.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import hu.bme.aut.dogspecies.R
-import hu.bme.aut.dogspecies.ui.about.AboutActivity
-import hu.bme.aut.dogspecies.ui.details.DetailsActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import dagger.hilt.android.AndroidEntryPoint
+import hu.bme.aut.dogspecies.ui.about.AboutScreen
+import hu.bme.aut.dogspecies.ui.add.AddScreen
+import hu.bme.aut.dogspecies.ui.add.AddViewModel
+import hu.bme.aut.dogspecies.ui.list.ListScreen
+import hu.bme.aut.dogspecies.ui.list.ListViewModel
 
-class MainActivity : AppCompatActivity() {
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    private var mFirebaseAnalytics: FirebaseAnalytics? = null
+    private val viewModel: ListViewModel by viewModels()
+    private lateinit var navController: NavHostController
+
+    private val addViewModel: AddViewModel by viewModels()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        val detailsButton = findViewById<Button>(R.id.details)
-
-        detailsButton.setOnClickListener {
-            val intent = Intent(this, DetailsActivity::class.java)
-            startActivity(intent)
-        }
-
-        val aboutButton = findViewById<Button>(R.id.about)
-
-        aboutButton.setOnClickListener {
-            val intent = Intent(this, AboutActivity::class.java)
-            startActivity(intent)
+        setContent {
+            Navigation()
         }
     }
+
+    @Composable
+    fun Navigation() {
+        navController = rememberNavController()
+        NavHost(navController, startDestination = "list") {
+            composable(route = "list") {
+                ListScreen(navController = navController, viewModel = viewModel, addViewModel = addViewModel).Screen()
+            }
+            composable(route = "About") {
+                AboutScreen(navController = navController).Screen()
+            }
+            composable(route = "Plus") {
+                AddScreen(
+                    navController = navController,
+                    addViewModel = addViewModel,
+                ).Screen()
+            }
+        }
+    }
+
 }

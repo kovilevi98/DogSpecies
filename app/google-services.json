@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289375720382",
+    "project_id": "dogspecies-116b7",
+    "storage_bucket": "dogspecies-116b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289375720382:android:1e525a8b40f184937f5fef",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.dogspecies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289375720382-4cl3tfaj7ft6g71k8gjgjqcd288r9jbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-vWZwk_5AKF9NG59o5thLcTaM-it4ZTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289375720382-4cl3tfaj7ft6g71k8gjgjqcd288r9jbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
